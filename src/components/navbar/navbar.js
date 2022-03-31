@@ -3,11 +3,11 @@ const Navbar = () => {
   return (
     <>
       <nav>
-        <brand className="brand-first-name">
+        <div className="brand brand-first-name">
           <h1>
             Video<span className="brand-last-name">Com</span>
           </h1>
-        </brand>
+        </div>
         <div className="input-field">
           <input type="text" placeholder="Search Videos" />
           <svg

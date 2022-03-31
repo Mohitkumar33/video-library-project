@@ -24,7 +24,7 @@ nav {
   z-index: 1;
 }
 
-brand,
+.brand,
 .nav-login,
 .main-content {
   margin-left: 1rem;
