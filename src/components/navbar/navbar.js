@@ -1,12 +1,15 @@
+import { Link } from "react-router-dom";
 import "./navbar.css";
 const Navbar = () => {
   return (
     <>
       <nav>
         <div className="brand brand-first-name">
-          <h1>
-            Video<span className="brand-last-name">Com</span>
-          </h1>
+          <Link to="/">
+            <h1>
+              Video<span className="brand-last-name">Com</span>
+            </h1>
+          </Link>
         </div>
         <div className="input-field">
           <input type="text" placeholder="Search Videos" />

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./currentPlay.css";
 import { mainContext } from "../../contexts/allContexts/main-context";
@@ -7,19 +7,24 @@ import { mainContext } from "../../contexts/allContexts/main-context";
 const CurrentPlay = () => {
   const { videoId } = useParams();
   const [currentVideo, setCurrentVideo] = useState(null);
+  const [loader, setLoader] = useState(false);
   const { state } = mainContext();
   const { allVideos } = state;
-  const finalArray = allVideos.filter(
-    (i) =>
-      i.categoryName === currentVideo.categoryName && i._id !== currentVideo._id
-  );
-  console.log(finalArray);
+  let recommendVideos;
+  if (currentVideo) {
+    recommendVideos = allVideos.filter(
+      (i) =>
+        i.categoryName === currentVideo.categoryName &&
+        i._id !== currentVideo._id
+    );
+  }
 
   useEffect(() => {
     (async (videoId) => {
       try {
-        console.log("Hello world");
+        setLoader(true);
         const { data } = await axios.get(`/api/video/${videoId}`);
+        setLoader(false);
         setCurrentVideo(data.video);
       } catch (error) {
         console.error(error);
@@ -28,6 +33,12 @@ const CurrentPlay = () => {
   }, [videoId]);
   return (
     <>
+      {loader && (
+        <img
+          className="loading-image"
+          src="https://res.cloudinary.com/dbfzfqfhl/image/upload/v1648755213/ecom%20item%20images/video%20library%20data/loading_vja82z.gif"
+        />
+      )}
       {currentVideo && (
         <main className="main-content">
           <div className="playing-page">
@@ -49,6 +60,7 @@ const CurrentPlay = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
+                      className="like-icon"
                       // style="fill: rgba(0, 0, 0, 1)"
                     >
                       <path d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
@@ -100,10 +112,16 @@ const CurrentPlay = () => {
             <div className="right-column">
               <h1 className="right-heading">Recommended</h1>
               <div className="all-must-watch">
-                {finalArray.map((i) => (
+                {recommendVideos.map((i) => (
                   <div className="video-card">
                     <div className="card-image">
-                      <img className="card-image" src={i.static_image} alt="" />
+                      <Link to={`/${i._id}`}>
+                        <img
+                          className="card-image"
+                          src={i.static_image}
+                          alt={i.creator}
+                        />
+                      </Link>
                     </div>
                     <p className="card-title text">{i.title}</p>
                     <div className="card-views">

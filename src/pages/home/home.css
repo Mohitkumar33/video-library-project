@@ -28,7 +28,8 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin: 0.5rem;
+  margin: 0.4rem;
+  font-size: 18px;
 }
 
 .chips {
@@ -120,14 +121,6 @@ body {
   justify-content: space-evenly;
 }
 
-/* .all-cards-home {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap: 1rem;
-} */
-
 /* card start */
 .video-card {
   height: 16rem;
@@ -140,7 +133,6 @@ body {
 .card-image {
   height: 10rem;
   width: 100%;
-  background-color: aqua;
 }
 
 .card-title,
@@ -168,14 +160,13 @@ body {
   padding-left: 3.7px;
 }
 
-/* svg {
-  width: "24";
-  height: "24";
-  fill: rgba(0, 0, 0, 1);
-} */
-
 .text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
