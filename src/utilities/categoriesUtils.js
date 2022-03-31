@@ -1,21 +1,12 @@
 import axios from "axios";
-
+import { categories } from "./apiUrls";
 const setCategories = async () => {
   try {
-    const { data } = await axios.get("/api/categories");
+    const { data } = await axios.get(categories);
     return data.categories;
   } catch (error) {
     console.error(error);
   }
 };
 
-const setVideos = async () => {
-  try {
-    const { data } = await axios.get("/api/videos");
-    return data.videos;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export { setCategories, setVideos };
+export { setCategories };

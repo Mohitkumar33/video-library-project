@@ -1,8 +1,8 @@
 import { createContext, useContext, useReducer } from "react";
 import { useEffect } from "react";
-import { setCategories, setVideos } from "../../utilities/categoriesUtils";
+import { setCategories } from "../../utilities/categoriesUtils";
+import { setVideos } from "../../utilities/videosUtils";
 import { reducerFunction } from "./reducerFunction";
-
 const context = createContext(null);
 
 const ContextProvider = ({ children }) => {
