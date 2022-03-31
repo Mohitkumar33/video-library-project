@@ -8,6 +8,7 @@
   min-width: 48rem;
   display: flex;
   flex-direction: column;
+  margin-left: 1rem;
 }
 
 .right-column {
@@ -16,7 +17,6 @@
 }
 
 .current-playing {
-  background-color: blueviolet;
   height: 22rem;
   width: 100%;
 }
@@ -62,7 +62,6 @@
 .card-image {
   height: 7rem;
   width: 100%;
-  background-color: aqua;
 }
 
 .card-title,

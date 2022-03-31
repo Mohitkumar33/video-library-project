@@ -1,11 +1,24 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { mainContext } from "../../contexts/allContexts/main-context";
 import "./home.css";
-
+import { useEffect } from "react";
+useState;
 const Home = () => {
   const { state } = mainContext();
   const { allCategories } = state;
   const { allVideos } = state;
+  const [finalArray, setFinalArray] = useState(allVideos);
+  console.log(finalArray);
+  const categorySelect = (categoryName, allVideos) => {
+    if (categoryName === "ALL") return setFinalArray(allVideos);
+    const newVideos = allVideos.filter((i) => i.categoryName === categoryName);
+    setFinalArray(newVideos);
+  };
+  useEffect(() => {
+    setFinalArray(allVideos);
+  }, [allVideos]);
+
   return (
     <>
       {/* <Link to="/">Home</Link> ||
@@ -62,7 +75,12 @@ const Home = () => {
           <div className="content-column">
             <div className="chips">
               {allCategories.map((i) => (
-                <button key={i._id}>{i.categoryName}</button>
+                <button
+                  key={i._id}
+                  onClick={() => categorySelect(i.categoryName, allVideos)}
+                >
+                  {i.categoryName}
+                </button>
               ))}
             </div>
 
@@ -82,10 +100,12 @@ const Home = () => {
             </div>
             <h2 className="must-watch">Must watch videos</h2>
             <div className="all-cards-home">
-              {allVideos.map((i) => (
+              {finalArray.map((i) => (
                 <div className="video-card" key={i._id}>
                   <div className="card-image">
-                    <img className="card-image" src={i.static_image} alt="" />
+                    <Link to={`/abc/${i._id}`}>
+                      <img className="card-image" src={i.static_image} alt="" />
+                    </Link>
                   </div>
                   <div className="card-title text">{i.title}</div>
                   <div className="card-views">
