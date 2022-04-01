@@ -8,15 +8,16 @@
   min-width: 48rem;
   display: flex;
   flex-direction: column;
+  margin-left: 1rem;
 }
 
 .right-column {
   display: flex;
   flex-direction: column;
+  margin-right: 1rem;
 }
 
 .current-playing {
-  background-color: blueviolet;
   height: 22rem;
   width: 100%;
 }
@@ -52,7 +53,7 @@
 /* card started */
 
 .video-card {
-  height: 13rem;
+  height: 16rem;
   width: 17rem;
   display: flex;
   flex-direction: column;
@@ -60,9 +61,8 @@
 }
 
 .card-image {
-  height: 7rem;
+  height: 10rem;
   width: 100%;
-  background-color: aqua;
 }
 
 .card-title,
@@ -115,4 +115,14 @@
 
 .views-pad {
   padding-left: 3.7px;
+}
+
+.loading-image {
+  display: block;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  height: 30rem;
+  width: 30rem;
 }

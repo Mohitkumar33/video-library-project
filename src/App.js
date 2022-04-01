@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/navbar/navbar";
 import { MockAPI } from "./mockman";
+import { CurrentPlay } from "./pages/current play/currentPlay";
 import { Explore } from "./pages/explore/explore";
 import { History } from "./pages/history/history";
 import { Home } from "./pages/home/home";
@@ -16,10 +17,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/playlist" element={<Playlist />} />
+        <Route path="/:videoId" element={<CurrentPlay />} />
         <Route path="/history" element={<History />} />
         <Route path="/watchlater" element={<WatchLater />} />
         <Route path="/liked" element={<Liked />} />
         <Route path="/mock" element={<MockAPI />} />
+        {/* <Route path="*" element */}
       </Routes>
     </div>
   );
