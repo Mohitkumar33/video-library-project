@@ -3,18 +3,26 @@ import { useState } from "react";
 import { mainContext } from "../../contexts/allContexts/main-context";
 import "./home.css";
 import { useEffect } from "react";
+import { useSearchFilter } from "../../contexts/search-filter-context";
+import { navbarSearch } from "../../utilities/navbarSearch";
 useState;
 const Home = () => {
+  const { filterState } = useSearchFilter();
   const { state } = mainContext();
   const { allCategories } = state;
   const { allVideos } = state;
   const [finalArray, setFinalArray] = useState(allVideos);
-  console.log(finalArray);
   const categorySelect = (categoryName, allVideos) => {
     if (categoryName === "ALL") return setFinalArray(allVideos);
     const newVideos = allVideos.filter((i) => i.categoryName === categoryName);
     setFinalArray(newVideos);
   };
+
+  useEffect(() => {
+    const newArray = navbarSearch(filterState, allVideos);
+    setFinalArray(newArray);
+  }, [filterState]);
+
   useEffect(() => {
     setFinalArray(allVideos);
   }, [allVideos]);
@@ -112,21 +120,26 @@ const Home = () => {
             </div>
             <h2 className="must-watch">Must watch videos</h2>
             <div className="all-cards-home">
-              {finalArray.map((i) => (
-                <div className="video-card" key={i._id}>
-                  <div className="card-image">
-                    <Link to={`/${i._id}`}>
-                      <img className="card-image" src={i.static_image} alt="" />
-                    </Link>
+              {finalArray &&
+                finalArray.map((i) => (
+                  <div className="video-card" key={i._id}>
+                    <div className="card-image">
+                      <Link to={`/${i._id}`}>
+                        <img
+                          className="card-image"
+                          src={i.static_image}
+                          alt=""
+                        />
+                      </Link>
+                    </div>
+                    <div className="card-title text">{i.title}</div>
+                    <div className="card-views">
+                      <p>6k views</p>
+                      <p className="hours-pading">| 4 hours ago</p>
+                    </div>
+                    <button className="card-watch-button">Watch Later</button>
                   </div>
-                  <div className="card-title text">{i.title}</div>
-                  <div className="card-views">
-                    <p>6k views</p>
-                    <p className="hours-pading">| 4 hours ago</p>
-                  </div>
-                  <button className="card-watch-button">Watch Later</button>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useSearchFilter } from "../../contexts/search-filter-context";
 import "./navbar.css";
 const Navbar = () => {
+  const { filterState, setFilterState } = useSearchFilter();
   return (
     <>
       <nav>
@@ -12,7 +14,12 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="input-field">
-          <input type="text" placeholder="Search Videos" />
+          <input
+            type="text"
+            placeholder="Search Videos"
+            value={filterState}
+            onChange={(e) => setFilterState(e.target.value)}
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="search-icon"
