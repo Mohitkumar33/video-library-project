@@ -1,8 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/auth-context";
 import { useSearchFilter } from "../../contexts/search-filter-context";
 import "./navbar.css";
+
 const Navbar = () => {
+  const navigate = useNavigate();
   const { filterState, setFilterState } = useSearchFilter();
+  const { authState, setAuthState } = useAuth();
+  const { isAuth, userInfo } = authState;
+  const logoutHandler = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userName");
+    setAuthState({ isAuth: false, userInfo: null });
+    navigate("/login");
+  };
   return (
     <>
       <nav>
@@ -35,8 +46,26 @@ const Navbar = () => {
             />
           </svg>
         </div>
+        <div className="login-signup">
+          {!isAuth ? (
+            <Link to="/login">
+              <button className="nav-login">Login</button>
+            </Link>
+          ) : (
+            <>
+              <button className="nav-login" onClick={logoutHandler}>
+                Logout
+              </button>
+              <span>{`hello, ${userInfo}`}</span>
+            </>
+          )}
 
-        <button className="nav-login">Login</button>
+          {!isAuth && (
+            <Link to="/signup">
+              <button className="nav-signup">Signup</button>
+            </Link>
+          )}
+        </div>
       </nav>
     </>
   );

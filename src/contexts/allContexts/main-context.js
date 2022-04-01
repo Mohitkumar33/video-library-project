@@ -9,9 +9,9 @@ const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducerFunction, {
     allVideos: [],
     allCategories: [],
-    // likes: [],
-    // watchlater: [],
-    // history: [],
+    likes: [],
+    watchlater: [],
+    history: [],
   });
 
   useEffect(() => {
@@ -25,6 +25,24 @@ const ContextProvider = ({ children }) => {
     (async () => {
       const data = await setCategories();
       dispatch({ type: "SET_CATEGORIES", payload: data });
+    })();
+  }, []);
+  useEffect(() => {
+    (async () => {
+      const data = await setLikes();
+      dispatch({ type: "SET_VIDEOS", payload: data });
+    })();
+  }, []);
+  useEffect(() => {
+    (async () => {
+      const data = await setWatchlater();
+      dispatch({ type: "SET_VIDEOS", payload: data });
+    })();
+  }, []);
+  useEffect(() => {
+    (async () => {
+      const data = await setHistory();
+      dispatch({ type: "SET_VIDEOS", payload: data });
     })();
   }, []);
 

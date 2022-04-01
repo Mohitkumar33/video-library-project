@@ -10,21 +10,21 @@ const reducerFunction = (state, action) => {
         ...state,
         allVideos: action.payload,
       };
-    // case "SET_LIKES":
-    //   return {
-    //     ...state,
-    //     likes: action.payload,
-    //   };
-    // case "SET_WATCHLATER":
-    //   return {
-    //     ...state,
-    //     watchlater: action.payload,
-    //   };
-    // case "SET_HISTORY":
-    //   return {
-    //     ...state,
-    //     history: action.payload,
-    //   };
+    case "SET_LIKES":
+      return {
+        ...state,
+        likes: action.payload,
+      };
+    case "SET_WATCHLATER":
+      return {
+        ...state,
+        watchlater: action.payload,
+      };
+    case "SET_HISTORY":
+      return {
+        ...state,
+        history: action.payload,
+      };
     default:
       return { state };
   }

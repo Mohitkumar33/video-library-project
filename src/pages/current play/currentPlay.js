@@ -109,7 +109,7 @@ const CurrentPlay = () => {
               <h1 className="right-heading">Recommended</h1>
               <div className="all-must-watch">
                 {recommendVideos.map((i) => (
-                  <div className="video-card">
+                  <div className="video-card" key={i._id}>
                     <div className="card-image">
                       <Link to={`/${i._id}`}>
                         <img
