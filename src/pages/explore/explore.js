@@ -1,14 +1,23 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { mainContext } from "../../contexts/allContexts/main-context";
+import { useSearchFilter } from "../../contexts/search-filter-context";
 import "./explore.css";
+import { navbarSearch } from "../../utilities/navbarSearch";
 const Explore = () => {
   const { state } = mainContext();
+  const { filterState } = useSearchFilter();
   const { allVideos } = state;
+  const [finalArray, setFinalArray] = useState(allVideos);
+  useEffect(() => {
+    const newArray = navbarSearch(filterState, allVideos);
+    setFinalArray(newArray);
+  }, [filterState]);
   return (
     <>
       <h2 className="must-watch">Trending Videos</h2>
       <div className="all-cards-home">
-        {allVideos.map((i) => (
+        {finalArray.map((i) => (
           <div className="video-card" key={i._id}>
             <div className="card-image">
               <Link to={`/${i._id}`}>

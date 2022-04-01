@@ -109,7 +109,9 @@ const Home = () => {
                 <h4>RIOT GAMES</h4>
                 <h2>VALORANT MASTERS:</h2>
                 <h2>Berlin - Group State</h2>
-                <button>Watch Now</button>
+                <Link to="/explore">
+                  <button>Watch Now</button>
+                </Link>
               </div>
               <div className="latest-video-image">
                 <img
