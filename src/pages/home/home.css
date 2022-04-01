@@ -112,10 +112,6 @@ body {
   margin-top: 10px;
 }
 
-.latest-video-info button:hover {
-  cursor: pointer;
-}
-
 .must-watch {
   margin-bottom: 1rem;
 }
@@ -175,4 +171,8 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+button:hover {
+  cursor: pointer;
 }

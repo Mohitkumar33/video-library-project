@@ -21,7 +21,7 @@ const Explore = () => {
           <div className="video-card" key={i._id}>
             <div className="card-image">
               <Link to={`/${i._id}`}>
-                <img className="card-image" src={i.static_image} alt="" />
+                <img className="card-image" src={i.video_img} alt="" />
               </Link>
             </div>
             <div className="card-title text">{i.title}</div>
