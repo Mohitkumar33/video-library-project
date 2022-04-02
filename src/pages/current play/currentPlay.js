@@ -23,9 +23,9 @@ const CurrentPlay = () => {
   let recommendVideos;
   if (currentVideo) {
     recommendVideos = allVideos.filter(
-      (i) =>
-        i.categoryName === currentVideo.categoryName &&
-        i._id !== currentVideo._id
+      (video) =>
+        video.categoryName === currentVideo.categoryName &&
+        video._id !== currentVideo._id
     );
   }
 
@@ -201,37 +201,41 @@ const CurrentPlay = () => {
             <div className="right-column">
               <h1 className="right-heading">Recommended</h1>
               <div className="all-must-watch">
-                {recommendVideos.map((i) => (
-                  <div className="video-card" key={i._id}>
+                {recommendVideos.map((video) => (
+                  <div className="video-card" key={video._id}>
                     <div className="card-image">
-                      <Link to={`/video/${i._id}`}>
+                      <Link to={`/video/${video._id}`}>
                         <img
                           className="card-image"
-                          src={i.static_image}
+                          src={video.static_image}
                           onClick={
-                            isAuth ? () => addToHistory(i, dispatch) : undefined
+                            isAuth
+                              ? () => addToHistory(video, dispatch)
+                              : undefined
                           }
-                          alt={i.creator}
+                          alt={video.creator}
                         />
                       </Link>
                     </div>
-                    <p className="card-title text">{i.title}</p>
+                    <p className="card-title text">{video.title}</p>
                     <div className="card-views">
                       <p>6k views</p>
                       <p className="views-pad">| 4 hours ago</p>
                     </div>
                     {isAuth ? (
-                      watchlater.some((item) => item._id === i._id) ? (
+                      watchlater.some((item) => item._id === video._id) ? (
                         <button
                           className="card-watch-button"
-                          onClick={() => removeFromWatchlater(i._id, dispatch)}
+                          onClick={() =>
+                            removeFromWatchlater(video._id, dispatch)
+                          }
                         >
                           Remove from Watchlater
                         </button>
                       ) : (
                         <button
                           className="card-watch-button"
-                          onClick={() => addToWatchlater(i, dispatch)}
+                          onClick={() => addToWatchlater(video, dispatch)}
                         >
                           Add to Watchlater
                         </button>

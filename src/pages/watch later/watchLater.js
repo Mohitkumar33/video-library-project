@@ -14,26 +14,28 @@ const WatchLater = () => {
     <>
       <h2 className="must-watch">WatchLater Videos</h2>
       <div className="all-cards-home">
-        {watchlater.map((i) => (
-          <div className="video-card" key={i._id}>
+        {watchlater.map((video) => (
+          <div className="video-card" key={video._id}>
             <div className="card-image">
-              <Link to={`/video/${i._id}`}>
+              <Link to={`/video/${video._id}`}>
                 <img
                   className="card-image"
-                  src={i.video_img}
-                  onClick={isAuth ? () => addToHistory(i, dispatch) : undefined}
-                  alt={i.title}
+                  src={video.video_img}
+                  onClick={
+                    isAuth ? () => addToHistory(video, dispatch) : undefined
+                  }
+                  alt={video.title}
                 />
               </Link>
             </div>
-            <div className="card-title text">{i.title}</div>
+            <div className="card-title text">{video.title}</div>
             <div className="card-views">
               <p>6k views</p>
               <p className="hours-pading">| 4 hours ago</p>
             </div>
             <button
               className="card-watch-button"
-              onClick={() => removeFromWatchlater(i._id, dispatch)}
+              onClick={() => removeFromWatchlater(video._id, dispatch)}
             >
               Remove from Watchlater
             </button>
