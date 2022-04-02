@@ -6,6 +6,7 @@ const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
     isAuth: localStorage.token ? true : false,
     userInfo: localStorage.userName ? localStorage.userName : null,
+    token: localStorage.token ?? null,
   });
   return (
     <authContext.Provider value={{ authState, setAuthState }}>
