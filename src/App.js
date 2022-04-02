@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/navbar/navbar";
 import { MockAPI } from "./mockman";
 import { CurrentPlay } from "./pages/current play/currentPlay";
+import { Disliked } from "./pages/disliked/disliked";
+import { Error } from "./pages/error page/error";
 import { Explore } from "./pages/explore/explore";
 import { History } from "./pages/history/history";
 import { Home } from "./pages/home/home";
@@ -25,7 +27,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/mock" element={<MockAPI />} />
-        {/* <Route path="*" element */}
+        <Route path="/disliked" element={<Disliked />} />
+        {/* <Route path="*" element={<Error />} /> */}
       </Routes>
     </div>
   );

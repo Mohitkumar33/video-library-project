@@ -13,4 +13,34 @@ const setLikes = async () => {
     console.error(error);
   }
 };
-export { setLikes };
+
+const addToLikes = async (video, dispatch) => {
+  try {
+    const { data } = await axios.post(
+      likes,
+      { video },
+      {
+        headers: {
+          authorization: localStorage.getItem("token"),
+        },
+      }
+    );
+    dispatch({ type: "ADD_TO_LIKES", payload: data.likes });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const removeFromLikes = async (id, dispatch) => {
+  try {
+    const { data } = await axios.delete(`${likes}/${id}`, {
+      headers: {
+        authorization: localStorage.getItem("token"),
+      },
+    });
+    dispatch({ type: "REMOVE_FROM_LIKES", payload: data.likes });
+  } catch (error) {
+    console.error(error);
+  }
+};
+export { setLikes, addToLikes, removeFromLikes };

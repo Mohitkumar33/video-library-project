@@ -14,10 +14,11 @@ const ContextProvider = ({ children }) => {
     allVideos: [],
     allCategories: [],
     likes: [],
+    dislikes: [],
     watchlater: [],
     history: [],
   });
-  const { authState, setAuthState } = useAuth();
+  const { authState } = useAuth();
   const { isAuth } = authState;
 
   useEffect(() => {

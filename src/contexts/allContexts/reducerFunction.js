@@ -1,4 +1,5 @@
 const reducerFunction = (state, action) => {
+  const { dislikes } = state;
   switch (action.type) {
     case "SET_CATEGORIES":
       return {
@@ -14,6 +15,26 @@ const reducerFunction = (state, action) => {
       return {
         ...state,
         likes: action.payload,
+      };
+    case "ADD_TO_LIKES":
+      return {
+        ...state,
+        likes: action.payload,
+      };
+    case "REMOVE_FROM_LIKES":
+      return {
+        ...state,
+        likes: action.payload,
+      };
+    case "ADD_TO_DISLIKES":
+      return {
+        ...state,
+        dislikes: [...dislikes, action.payload],
+      };
+    case "REMOVE_FROM_DISLIKES":
+      return {
+        ...state,
+        dislikes: dislikes.filter((item) => item._id !== action.payload._id),
       };
     case "SET_WATCHLATER":
       return {

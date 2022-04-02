@@ -126,3 +126,8 @@
   height: 30rem;
   width: 30rem;
 }
+
+.like-icon:hover,
+.dislike-icon:hover {
+  cursor: pointer;
+}
