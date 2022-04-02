@@ -204,7 +204,7 @@ const CurrentPlay = () => {
                 {recommendVideos.map((i) => (
                   <div className="video-card" key={i._id}>
                     <div className="card-image">
-                      <Link to={`/${i._id}`}>
+                      <Link to={`/video/${i._id}`}>
                         <img
                           className="card-image"
                           src={i.static_image}

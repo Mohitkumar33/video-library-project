@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/playlist" element={<Playlist />} />
-        <Route path="/:videoId" element={<CurrentPlay />} />
+        <Route path="/video/:videoId" element={<CurrentPlay />} />
         <Route path="/history" element={<History />} />
         <Route path="/watchlater" element={<WatchLater />} />
         <Route path="/liked" element={<Liked />} />
@@ -28,7 +28,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/mock" element={<MockAPI />} />
         <Route path="/disliked" element={<Disliked />} />
-        {/* <Route path="*" element={<Error />} /> */}
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );
