@@ -1,9 +1,12 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 const authContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [authState, setAuthState] = useState(false);
+  const [authState, setAuthState] = useState({
+    isAuth: localStorage.token ? true : false,
+    userInfo: localStorage.userName ? localStorage.userName : null,
+  });
   return (
     <authContext.Provider value={{ authState, setAuthState }}>
       {children}

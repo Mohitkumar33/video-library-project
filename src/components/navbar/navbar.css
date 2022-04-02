@@ -26,21 +26,32 @@ nav {
 }
 
 .brand,
-.nav-login,
+.login-signup,
 .main-content {
   margin-left: 1rem;
   margin-right: 3rem;
 }
+
 .brand {
   margin-left: 2.4rem;
 }
 .nav-login {
-  padding: 8px 12px;
+  padding: 7px 12px;
   border-radius: 4px;
-  border: 1px;
+  border: 1px solid var(--primary-red);
   font-size: medium;
   background-color: var(--primary-red);
   color: white;
+  margin-right: 1rem;
+}
+
+.nav-signup {
+  padding: 7px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--primary-red);
+  font-size: medium;
+  background-color: transparent;
+  color: var(--primary-red);
 }
 
 .brand-last-name {
