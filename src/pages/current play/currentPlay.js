@@ -62,15 +62,17 @@ const CurrentPlay = () => {
                   <div
                     className="like-icon"
                     onClick={() =>
-                      dislikes.some((item) => item._id === currentVideo._id)
-                        ? (dispatch({
-                            type: "REMOVE_FROM_DISLIKES",
-                            payload: currentVideo,
-                          }),
-                          addToLikes(currentVideo, dispatch))
-                        : likes.some((item) => item._id === currentVideo._id)
-                        ? removeFromLikes(currentVideo._id, dispatch)
-                        : addToLikes(currentVideo, dispatch)
+                      isAuth
+                        ? dislikes.some((item) => item._id === currentVideo._id)
+                          ? (dispatch({
+                              type: "REMOVE_FROM_DISLIKES",
+                              payload: currentVideo,
+                            }),
+                            addToLikes(currentVideo, dispatch))
+                          : likes.some((item) => item._id === currentVideo._id)
+                          ? removeFromLikes(currentVideo._id, dispatch)
+                          : addToLikes(currentVideo, dispatch)
+                        : alert("Please login")
                     }
                   >
                     {likes.some((item) => item._id === currentVideo._id) ? (
@@ -96,21 +98,25 @@ const CurrentPlay = () => {
                     className="dislike-icon"
                     // onClick={() => removeFromLikes(currentVideo._id, dispatch)}
                     onClick={() =>
-                      likes.some((item) => item._id === currentVideo._id)
-                        ? (removeFromLikes(currentVideo._id, dispatch),
-                          dispatch({
-                            type: "ADD_TO_DISLIKES",
-                            payload: currentVideo,
-                          }))
-                        : dislikes.some((item) => item._id === currentVideo._id)
-                        ? dispatch({
-                            type: "REMOVE_FROM_DISLIKES",
-                            payload: currentVideo,
-                          })
-                        : dispatch({
-                            type: "ADD_TO_DISLIKES",
-                            payload: currentVideo,
-                          })
+                      isAuth
+                        ? likes.some((item) => item._id === currentVideo._id)
+                          ? (removeFromLikes(currentVideo._id, dispatch),
+                            dispatch({
+                              type: "ADD_TO_DISLIKES",
+                              payload: currentVideo,
+                            }))
+                          : dislikes.some(
+                              (item) => item._id === currentVideo._id
+                            )
+                          ? dispatch({
+                              type: "REMOVE_FROM_DISLIKES",
+                              payload: currentVideo,
+                            })
+                          : dispatch({
+                              type: "ADD_TO_DISLIKES",
+                              payload: currentVideo,
+                            })
+                        : alert("Please login")
                     }
                   >
                     {dislikes.some((item) => item._id === currentVideo._id) ? (
