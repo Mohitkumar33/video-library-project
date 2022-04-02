@@ -41,7 +41,27 @@ const reducerFunction = (state, action) => {
         ...state,
         watchlater: action.payload,
       };
+    case "ADD_TO_WATCHLATER":
+      return {
+        ...state,
+        watchlater: action.payload,
+      };
+    case "REMOVE_FROM_WATCHLATER":
+      return {
+        ...state,
+        watchlater: action.payload,
+      };
     case "SET_HISTORY":
+      return {
+        ...state,
+        history: action.payload,
+      };
+    case "ADD_TO_HISTORY":
+      return {
+        ...state,
+        history: action.payload,
+      };
+    case "REMOVE_FROM_HISTORY":
       return {
         ...state,
         history: action.payload,

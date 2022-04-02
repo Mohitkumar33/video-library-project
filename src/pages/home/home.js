@@ -6,19 +6,26 @@ import { useEffect } from "react";
 import { useSearchFilter } from "../../contexts/search-filter-context";
 import { navbarSearch } from "../../utilities/navbarSearch";
 import { useAuth } from "../../contexts/auth-context";
+import { addToHistory } from "../../utilities/historyUtils";
+import {
+  addToWatchlater,
+  removeFromWatchlater,
+} from "../../utilities/watchlaterUtils";
 
 const Home = () => {
   const navigate = useNavigate();
   const { authState } = useAuth();
   const { isAuth } = authState;
   const { filterState } = useSearchFilter();
-  const { state } = mainContext();
+  const { state, dispatch } = mainContext();
   const { allCategories } = state;
-  const { allVideos } = state;
+  const { allVideos, watchlater } = state;
   const [finalArray, setFinalArray] = useState(allVideos);
   const categorySelect = (categoryName, allVideos) => {
     if (categoryName === "ALL") return setFinalArray(allVideos);
-    const newVideos = allVideos.filter((i) => i.categoryName === categoryName);
+    const newVideos = allVideos.filter(
+      (video) => video.categoryName === categoryName
+    );
     setFinalArray(newVideos);
   };
 
@@ -111,12 +118,12 @@ const Home = () => {
           </div>
           <div className="content-column">
             <div className="chips">
-              {allCategories.map((i) => (
+              {allCategories.map((video) => (
                 <button
-                  key={i._id}
-                  onClick={() => categorySelect(i.categoryName, allVideos)}
+                  key={video._id}
+                  onClick={() => categorySelect(video.categoryName, allVideos)}
                 >
-                  {i.categoryName}
+                  {video.categoryName}
                 </button>
               ))}
             </div>
@@ -140,23 +147,53 @@ const Home = () => {
             <h2 className="must-watch">Must watch videos</h2>
             <div className="all-cards-home">
               {finalArray &&
-                finalArray.map((i) => (
-                  <div className="video-card" key={i._id}>
+                finalArray.map((video) => (
+                  <div className="video-card" key={video._id}>
                     <div className="card-image">
-                      <Link to={`/${i._id}`}>
+                      <Link to={`/video/${video._id}`}>
                         <img
                           className="card-image"
-                          src={i.static_image}
-                          alt=""
+                          src={video.static_image}
+                          onClick={
+                            isAuth
+                              ? () => addToHistory(video, dispatch)
+                              : undefined
+                          }
+                          alt={video.title}
                         />
                       </Link>
                     </div>
-                    <div className="card-title text">{i.title}</div>
+                    <div className="card-title text">{video.title}</div>
                     <div className="card-views">
                       <p>6k views</p>
                       <p className="hours-pading">| 4 hours ago</p>
                     </div>
-                    <button className="card-watch-button">Watch Later</button>
+                    {isAuth ? (
+                      watchlater.some((item) => item._id === video._id) ? (
+                        <button
+                          className="card-watch-button"
+                          onClick={() =>
+                            removeFromWatchlater(video._id, dispatch)
+                          }
+                        >
+                          Remove from Watchlater
+                        </button>
+                      ) : (
+                        <button
+                          className="card-watch-button"
+                          onClick={() => addToWatchlater(video, dispatch)}
+                        >
+                          Add to Watchlater
+                        </button>
+                      )
+                    ) : (
+                      <button
+                        className="card-watch-button"
+                        onClick={() => alert("Please login")}
+                      >
+                        Watch Later
+                      </button>
+                    )}
                   </div>
                 ))}
             </div>

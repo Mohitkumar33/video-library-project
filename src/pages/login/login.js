@@ -22,7 +22,7 @@ const Login = () => {
         isAuth: localStorage.token ? true : false,
         userInfo: localStorage.userName ? localStorage.userName : null,
       });
-      navigate("/");
+      navigate(-1);
     } catch (error) {
       console.error(error);
     }
