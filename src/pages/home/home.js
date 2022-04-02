@@ -6,15 +6,20 @@ import { useEffect } from "react";
 import { useSearchFilter } from "../../contexts/search-filter-context";
 import { navbarSearch } from "../../utilities/navbarSearch";
 import { useAuth } from "../../contexts/auth-context";
+import { addToHistory } from "../../utilities/historyUtils";
+import {
+  addToWatchlater,
+  removeFromWatchlater,
+} from "../../utilities/watchlaterUtils";
 
 const Home = () => {
   const navigate = useNavigate();
   const { authState } = useAuth();
   const { isAuth } = authState;
   const { filterState } = useSearchFilter();
-  const { state } = mainContext();
+  const { state, dispatch } = mainContext();
   const { allCategories } = state;
-  const { allVideos } = state;
+  const { allVideos, watchlater } = state;
   const [finalArray, setFinalArray] = useState(allVideos);
   const categorySelect = (categoryName, allVideos) => {
     if (categoryName === "ALL") return setFinalArray(allVideos);
@@ -147,7 +152,10 @@ const Home = () => {
                         <img
                           className="card-image"
                           src={i.static_image}
-                          alt=""
+                          onClick={
+                            isAuth ? () => addToHistory(i, dispatch) : undefined
+                          }
+                          alt={i.title}
                         />
                       </Link>
                     </div>
@@ -156,7 +164,30 @@ const Home = () => {
                       <p>6k views</p>
                       <p className="hours-pading">| 4 hours ago</p>
                     </div>
-                    <button className="card-watch-button">Watch Later</button>
+                    {isAuth ? (
+                      watchlater.some((item) => item._id === i._id) ? (
+                        <button
+                          className="card-watch-button"
+                          onClick={() => removeFromWatchlater(i._id, dispatch)}
+                        >
+                          Remove from Watchlater
+                        </button>
+                      ) : (
+                        <button
+                          className="card-watch-button"
+                          onClick={() => addToWatchlater(i, dispatch)}
+                        >
+                          Add to Watchlater
+                        </button>
+                      )
+                    ) : (
+                      <button
+                        className="card-watch-button"
+                        onClick={() => alert("Please login")}
+                      >
+                        Watch Later
+                      </button>
+                    )}
                   </div>
                 ))}
             </div>
