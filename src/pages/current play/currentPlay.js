@@ -10,8 +10,10 @@ import {
   removeFromWatchlater,
 } from "../../utilities/watchlaterUtils";
 import { addToHistory } from "../../utilities/historyUtils";
+import { PlaylistModal } from "../playlist modal/playlistModal";
 
 const CurrentPlay = () => {
+  const [modal, setModal] = useState(false);
   const { videoId } = useParams();
   const [currentVideo, setCurrentVideo] = useState(null);
   const [loader, setLoader] = useState(false);
@@ -19,6 +21,11 @@ const CurrentPlay = () => {
   const { authState } = useAuth();
   const { isAuth } = authState;
   const { allVideos, likes, dislikes, watchlater } = state;
+
+  // const addVideo = (video, setModal) => {
+  //   setModal(true);
+  //   <PlaylistModal video={video} setModal={setModal} />
+  // };
 
   let recommendVideos;
   if (currentVideo) {
@@ -63,6 +70,7 @@ const CurrentPlay = () => {
                   allowFullScreen
                 ></iframe>
               </div>
+              {modal && <PlaylistModal setModal={setModal} />}
               <div className="all-video-actions">
                 <div className="action-icons">
                   <div
@@ -179,7 +187,7 @@ const CurrentPlay = () => {
 
                     <div>Add to Watchlater</div>
                   </div>
-                  <div>
+                  <div className="playlist-icon" onClick={() => setModal(true)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

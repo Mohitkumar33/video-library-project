@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ContextProvider } from "./contexts/allContexts/main-context";
 import { SearchFilterProvider } from "./contexts/search-filter-context";
 import { AuthProvider } from "./contexts/auth-context";
+import { PlaylistProvider } from "./contexts/playlistContext/playlist-context";
 
 // Call make Server
 makeServer();
@@ -15,11 +16,13 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <ContextProvider>
-          <SearchFilterProvider>
-            <App />
-          </SearchFilterProvider>
-        </ContextProvider>
+        <PlaylistProvider>
+          <ContextProvider>
+            <SearchFilterProvider>
+              <App />
+            </SearchFilterProvider>
+          </ContextProvider>
+        </PlaylistProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,
