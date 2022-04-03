@@ -70,7 +70,9 @@ const CurrentPlay = () => {
                   allowFullScreen
                 ></iframe>
               </div>
-              {modal && <PlaylistModal setModal={setModal} />}
+              {modal && (
+                <PlaylistModal setModal={setModal} video={currentVideo} />
+              )}
               <div className="all-video-actions">
                 <div className="action-icons">
                   <div

@@ -14,7 +14,7 @@ const setPlaylist = async () => {
   }
 };
 
-const addSinglePlaylist = async (singlPlaylist, playlistDispatch) => {
+const addSinglePlaylist = async (singlPlaylist, video, playlistDispatch) => {
   try {
     console.log("this is single playlist", singlPlaylist);
     const { data } = await axios.post(
@@ -30,6 +30,11 @@ const addSinglePlaylist = async (singlPlaylist, playlistDispatch) => {
     );
     console.log("Playlist data", data);
     playlistDispatch({ type: "ADD_SINGLE_PLAYLIST", payload: data.playlists });
+    await postSingleVideoInAPlaylist(
+      data.playlists[data.playlists.length - 1]._id,
+      video,
+      playlistDispatch
+    );
   } catch (error) {
     console.error(error);
   }
@@ -58,13 +63,18 @@ const getSinglePlaylistData = async (playlistId) => {
         authorization: localStorage.getItem("token"),
       },
     });
+    console.log("single playlist data----->", data);
     return data.playlist;
   } catch (error) {
     console.error(error);
   }
 };
 
-const postSingleVideoInAPlaylist = async (playlistId, video) => {
+const postSingleVideoInAPlaylist = async (
+  playlistId,
+  video,
+  playlistDispatch
+) => {
   try {
     const { data } = await axios.post(
       `${playlist}/${playlistId}`,
@@ -75,7 +85,11 @@ const postSingleVideoInAPlaylist = async (playlistId, video) => {
         },
       }
     );
-    return data.playlist;
+    console.log("post single playlist data", data);
+    playlistDispatch({
+      type: "ADD_SINGLE_VIDEO_TO_PLAYLIST",
+      payload: data.playlist,
+    });
   } catch (error) {
     console.error(error);
   }
@@ -91,9 +105,10 @@ const deleteVideoInPlaylist = async (playlistId, videoId, playlistDispatch) => {
         },
       }
     );
+    console.log("delete single playlist data", data);
     playlistDispatch({
       type: "DELETE_SINGLE_VIDEO_FROM_PLAYLIST",
-      payload: data.playlists,
+      payload: data.playlist,
     });
   } catch (error) {
     console.error(error);
