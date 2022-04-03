@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom";
 import { mainContext } from "../../contexts/allContexts/main-context";
+import {
+  clearFullHistory,
+  removeFromHistory,
+} from "../../utilities/historyUtils";
 import "./history.css";
 
 const History = () => {
-  const { state } = mainContext();
+  const { state, dispatch } = mainContext();
   const { history } = state;
   return (
     <>
-      <h2 className="must-watch">My History</h2>
+      <div class="history-heading">
+        <h1>History</h1>
+        <button onClick={() => clearFullHistory(dispatch)}>
+          Create Full History
+        </button>
+      </div>
       <div className="all-cards-home">
         {history.map((video) => (
           <div className="video-card" key={video._id}>
@@ -21,7 +30,12 @@ const History = () => {
               <p>6k views</p>
               <p className="hours-pading">| 4 hours ago</p>
             </div>
-            <button className="card-watch-button">Watch Later</button>
+            <button
+              className="card-watch-button"
+              onClick={() => removeFromHistory(video._id, dispatch)}
+            >
+              Remove from history
+            </button>
           </div>
         ))}
       </div>
