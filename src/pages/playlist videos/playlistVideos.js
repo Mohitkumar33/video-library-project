@@ -9,23 +9,29 @@ import { usePlaylist } from "../../contexts/playlistContext/playlist-context";
 import { useAuth } from "../../contexts/auth-context";
 
 const PlaylistVideos = () => {
-  const { playlistState, playlistDispatch } = usePlaylist();
+  const { playlistDispatch } = usePlaylist();
   const { playlistId } = useParams();
   const [allVideos, setAllVideos] = useState(null);
-  const { authState, setAuthState } = useAuth();
+  const { authState } = useAuth();
   const { isAuth } = authState;
-  // const { videos } = allVideos;
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     (async (playlistId) => {
+      setLoader(true);
       const playlistData = await getSinglePlaylistData(playlistId);
-      console.log("all videos in playlist", playlistData);
+      setLoader(false);
       setAllVideos(playlistData);
     })(playlistId);
   }, [playlistId]);
   return (
     <>
-      <p>{playlistId}</p>
+      {loader && (
+        <img
+          className="loading-image"
+          src="https://res.cloudinary.com/dbfzfqfhl/image/upload/v1648755213/ecom%20item%20images/video%20library%20data/loading_vja82z.gif"
+        />
+      )}
       {allVideos && <h2 className="must-watch">{allVideos.title}</h2>}
       <div className="all-cards-home">
         {allVideos &&

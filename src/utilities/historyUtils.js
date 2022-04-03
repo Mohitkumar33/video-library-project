@@ -41,4 +41,17 @@ const removeFromHistory = async (id, dispatch) => {
     console.error(error);
   }
 };
-export { setHistory, addToHistory, removeFromHistory };
+
+const clearFullHistory = async (dispatch) => {
+  try {
+    const { data } = await axios.delete(`${history}/all`, {
+      headers: {
+        authorization: localStorage.getItem("token"),
+      },
+    });
+    dispatch({ type: "CLEAR_HISTORY", payload: data.history });
+  } catch (error) {
+    console.error(error);
+  }
+};
+export { setHistory, addToHistory, removeFromHistory, clearFullHistory };

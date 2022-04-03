@@ -21,12 +21,6 @@ const CurrentPlay = () => {
   const { authState } = useAuth();
   const { isAuth } = authState;
   const { allVideos, likes, dislikes, watchlater } = state;
-
-  // const addVideo = (video, setModal) => {
-  //   setModal(true);
-  //   <PlaylistModal video={video} setModal={setModal} />
-  // };
-
   let recommendVideos;
   if (currentVideo) {
     recommendVideos = allVideos.filter(
@@ -112,7 +106,6 @@ const CurrentPlay = () => {
                   </div>
                   <div
                     className="dislike-icon"
-                    // onClick={() => removeFromLikes(currentVideo._id, dispatch)}
                     onClick={() =>
                       isAuth
                         ? likes.some((item) => item._id === currentVideo._id)

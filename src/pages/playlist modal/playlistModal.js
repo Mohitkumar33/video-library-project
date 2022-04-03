@@ -13,7 +13,6 @@ const PlaylistModal = ({ setModal, video }) => {
     title: "",
     description: "",
   });
-  const [playId, setPlayId] = useState("");
   const { playlistState, playlistDispatch } = usePlaylist();
   const { playlists } = playlistState;
   return (
@@ -28,15 +27,13 @@ const PlaylistModal = ({ setModal, video }) => {
                   let isVideoInPlaylist = item.videos.some(
                     (i_video) => i_video._id === video._id
                   );
-                  console.log("playlist item --> ", item);
+
                   return (
                     <li key={item._id}>
                       <input
                         type="checkbox"
-                        // value={item._id}
                         defaultChecked={isVideoInPlaylist}
                         onChange={(e) => {
-                          console.log(e);
                           if (e.target.checked) {
                             postSingleVideoInAPlaylist(
                               item._id,

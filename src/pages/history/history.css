@@ -1,0 +1,14 @@
+.history-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem;
+}
+
+.history-heading button {
+  background-color: var(--primary-red);
+  border: transparent;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 3px;
+}

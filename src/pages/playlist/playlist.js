@@ -11,7 +11,7 @@ const Playlist = () => {
       <main className="main-content">
         <div className="playlist-heading">
           <h1>My playlist</h1>
-          <button>Create New Playlist</button>
+          {/* <button>Create New Playlist</button> */}
         </div>
         <div className="all-playlist">
           {playlists &&
