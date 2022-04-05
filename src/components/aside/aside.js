@@ -1,21 +1,25 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useAuth } from "../../contexts/auth-context";
+import "./aside.css";
 
 const Aside = () => {
   const { authState } = useAuth();
   const { isAuth } = authState;
+  const activeStyle = ({ isActive }) => {
+    return isActive ? "activeTab" : undefined;
+  };
   return (
     <>
       <div className="aside">
-        <Link to="/">
+        <NavLink className={activeStyle} to="/">
           <div className="home">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
               <path d="m21.743 12.331-9-10c-.379-.422-1.107-.422-1.486 0l-9 10a.998.998 0 0 0-.17 1.076c.16.361.518.593.913.593h2v7a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-7h2a.998.998 0 0 0 .743-1.669z"></path>
             </svg>
             Home
           </div>
-        </Link>
-        <Link to="/explore">
+        </NavLink>
+        <NavLink className={activeStyle} to="/explore">
           <div className="explore">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
               <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm3 13-8 2 2-8 8-2-2 8z"></path>
@@ -23,10 +27,10 @@ const Aside = () => {
             </svg>
             Explore
           </div>
-        </Link>
+        </NavLink>
         {isAuth ? (
           <>
-            <Link to="/playlist">
+            <NavLink className={activeStyle} to="/playlist">
               <div className="playlist">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                   <path d="M13 16.493C13 18.427 14.573 20 16.507 20s3.507-1.573 3.507-3.507c0-.177-.027-.347-.053-.517H20V6h2V4h-3a1 1 0 0 0-1 1v8.333a3.465 3.465 0 0 0-1.493-.346A3.51 3.51 0 0 0 13 16.493zM2 5h14v2H2z"></path>
@@ -34,9 +38,9 @@ const Aside = () => {
                 </svg>
                 Playlist
               </div>
-            </Link>
+            </NavLink>
             <hr />
-            <Link to="/history">
+            <NavLink className={activeStyle} to="/history">
               <div className="history">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                   <path d="M12 8v5h5v-2h-3V8z"></path>
@@ -44,16 +48,16 @@ const Aside = () => {
                 </svg>
                 History
               </div>
-            </Link>
-            <Link to="/watchlater">
+            </NavLink>
+            <NavLink className={activeStyle} to="/watchlater">
               <div className="watch-later">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                   <path d="M12 5c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm1 8h-2V8h2v5zM9 2h6v2H9zm9.707 2.293 2 2-1.414 1.414-2-2z"></path>
                 </svg>
                 Watch later
               </div>
-            </Link>
-            <Link to="/liked">
+            </NavLink>
+            <NavLink className={activeStyle} to="/liked">
               <div
                 className="liked-videos"
                 // onClick={() =>
@@ -67,20 +71,20 @@ const Aside = () => {
                 </svg>
                 Liked videos
               </div>
-            </Link>
+            </NavLink>
 
-            <Link to="/disliked">
+            <NavLink className={activeStyle} to="/disliked">
               <div className="disliked-videos">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                   <path d="M20 3h-1v13h1a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM4 16h7l-1.122 3.368A2 2 0 0 0 11.775 22H12l5-5.438V3H6l-3.937 8.649-.063.293V14a2 2 0 0 0 2 2z"></path>
                 </svg>
                 Disliked videos
               </div>
-            </Link>
+            </NavLink>
           </>
         ) : (
           <>
-            <Link to="/login">
+            <NavLink className={activeStyle} to="/login">
               <div className="playlist">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                   <path d="M13 16.493C13 18.427 14.573 20 16.507 20s3.507-1.573 3.507-3.507c0-.177-.027-.347-.053-.517H20V6h2V4h-3a1 1 0 0 0-1 1v8.333a3.465 3.465 0 0 0-1.493-.346A3.51 3.51 0 0 0 13 16.493zM2 5h14v2H2z"></path>
@@ -88,9 +92,9 @@ const Aside = () => {
                 </svg>
                 Playlist
               </div>
-            </Link>
+            </NavLink>
             <hr />
-            <Link to="/login">
+            <NavLink className={activeStyle} to="/login">
               <div className="history">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                   <path d="M12 8v5h5v-2h-3V8z"></path>
@@ -98,16 +102,16 @@ const Aside = () => {
                 </svg>
                 History
               </div>
-            </Link>
-            <Link to="/login">
+            </NavLink>
+            <NavLink className={activeStyle} to="/login">
               <div className="watch-later">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                   <path d="M12 5c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm1 8h-2V8h2v5zM9 2h6v2H9zm9.707 2.293 2 2-1.414 1.414-2-2z"></path>
                 </svg>
                 Watch later
               </div>
-            </Link>
-            <Link to="/login">
+            </NavLink>
+            <NavLink className={activeStyle} to="/login">
               <div
                 className="liked-videos"
                 // onClick={() =>
@@ -121,16 +125,16 @@ const Aside = () => {
                 </svg>
                 Liked videos
               </div>
-            </Link>
+            </NavLink>
 
-            <Link to="/login">
+            <NavLink className={activeStyle} to="/login">
               <div className="disliked-videos">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                   <path d="M20 3h-1v13h1a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM4 16h7l-1.122 3.368A2 2 0 0 0 11.775 22H12l5-5.438V3H6l-3.937 8.649-.063.293V14a2 2 0 0 0 2 2z"></path>
                 </svg>
                 Disliked videos
               </div>
-            </Link>
+            </NavLink>
           </>
         )}
         <hr />

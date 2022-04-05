@@ -9,7 +9,7 @@ import { removeFromWatchlater } from "../../utilities/watchlaterUtils";
 import "./watchLater.css";
 
 const WatchLater = () => {
-  const { state, dispatch } = mainContext();
+  const { state, dispatch, hamburger } = mainContext();
   const { watchlater } = state;
   const { authState } = useAuth();
   const { isAuth } = authState;
@@ -17,13 +17,19 @@ const WatchLater = () => {
     <>
       <main className="main-content">
         <div className="home-page">
-          <div className="aside-big">
+          {hamburger ? (
             <Aside />
-          </div>
+          ) : (
+            <>
+              <div className="aside-big">
+                <Aside />
+              </div>
 
-          <div className="aside-small">
-            <Aside2 />
-          </div>
+              <div className="aside-small">
+                <Aside2 />
+              </div>
+            </>
+          )}
           <div className="content-column">
             <h2 className="must-watch">WatchLater Videos</h2>
             <div className="all-cards-home">

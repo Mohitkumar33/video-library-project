@@ -9,6 +9,7 @@ import { usePlaylist } from "../../contexts/playlistContext/playlist-context";
 import { useAuth } from "../../contexts/auth-context";
 import { Aside } from "../../components/aside/aside";
 import { Aside2 } from "../../components/aside type 2/aside2";
+import { mainContext } from "../../contexts/allContexts/main-context";
 
 const PlaylistVideos = () => {
   const { playlistDispatch } = usePlaylist();
@@ -17,6 +18,7 @@ const PlaylistVideos = () => {
   const { authState } = useAuth();
   const { isAuth } = authState;
   const [loader, setLoader] = useState(false);
+  const { hamburger } = mainContext();
 
   const getVideosOfPlaylist = async () => {
     setLoader(true);
@@ -33,13 +35,19 @@ const PlaylistVideos = () => {
     <>
       <main className="main-content">
         <div className="home-page">
-          <div className="aside-big">
+          {hamburger ? (
             <Aside />
-          </div>
+          ) : (
+            <>
+              <div className="aside-big">
+                <Aside />
+              </div>
 
-          <div className="aside-small">
-            <Aside2 />
-          </div>
+              <div className="aside-small">
+                <Aside2 />
+              </div>
+            </>
+          )}
           <div className="content-column">
             {loader && (
               <img

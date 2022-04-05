@@ -9,19 +9,25 @@ import {
 import "./history.css";
 
 const History = () => {
-  const { state, dispatch } = mainContext();
+  const { state, dispatch, hamburger } = mainContext();
   const { history } = state;
   return (
     <>
       <main className="main-content">
         <div className="home-page">
-          <div className="aside-big">
+          {hamburger ? (
             <Aside />
-          </div>
+          ) : (
+            <>
+              <div className="aside-big">
+                <Aside />
+              </div>
 
-          <div className="aside-small">
-            <Aside2 />
-          </div>
+              <div className="aside-small">
+                <Aside2 />
+              </div>
+            </>
+          )}
           <div className="content-column">
             <div className="history-heading">
               <h1>History</h1>

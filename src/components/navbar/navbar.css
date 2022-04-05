@@ -13,9 +13,9 @@ body {
 }
 
 nav {
-  height: 3.5rem;
+  /* height: 3.5rem; */
   background-color: white;
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,6 +23,7 @@ nav {
   top: 0;
   z-index: 1;
   flex-wrap: wrap;
+  padding: 15px 0px;
 }
 
 .brand,
@@ -33,7 +34,7 @@ nav {
 }
 
 .brand {
-  margin-left: 2.4rem;
+  margin-left: 1rem;
 }
 .nav-login {
   padding: 7px 12px;
@@ -82,12 +83,29 @@ nav {
 .brand a {
   text-decoration: none;
 }
+@media (min-width: 930px) {
+  .ham-burger {
+    display: none;
+  }
+}
 
 @media (max-width: 1030px) {
-  .search-icon {
+  .input-field {
     display: none;
   }
-  input {
-    display: none;
-  }
+}
+
+.ham-burger {
+  fill: rgb(87, 87, 87);
+  height: 40px;
+  width: 40px;
+  padding: 5px;
+  background-color: rgba(173, 173, 173, 0.178);
+  border-radius: 3px;
+}
+
+.hamburger-setting {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
 }

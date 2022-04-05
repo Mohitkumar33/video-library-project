@@ -141,11 +141,22 @@
 }
 
 @media (max-width: 1030px) {
-  .right-column {
+  /* .right-column {
     display: none;
+  } */
+  .playing-page {
+    flex-direction: column;
   }
   .left-column {
     width: 100%;
+  }
+
+  .all-must-watch {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
   /* input {
     display: none;
