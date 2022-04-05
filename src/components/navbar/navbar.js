@@ -6,7 +6,7 @@ import "./navbar.css";
 import { mainContext } from "../../contexts/allContexts/main-context";
 
 const Navbar = () => {
-  const { setHamburger } = mainContext();
+  const { hamburger, setHamburger } = mainContext();
   const navigate = useNavigate();
   const { filterState, setFilterState } = useSearchFilter();
   const { authState, setAuthState } = useAuth();
@@ -25,7 +25,7 @@ const Navbar = () => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            className="ham-burger"
+            className={hamburger ? "ham-burger-active" : "ham-burger"}
             onClick={() => setHamburger((previous) => !previous)}
           >
             <path

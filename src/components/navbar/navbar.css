@@ -95,13 +95,18 @@ nav {
   }
 }
 
-.ham-burger {
+.ham-burger,
+.ham-burger-active {
   fill: rgb(87, 87, 87);
   height: 40px;
   width: 40px;
   padding: 5px;
   background-color: rgba(173, 173, 173, 0.178);
   border-radius: 3px;
+}
+
+.ham-burger-active {
+  background-color: rgba(108, 108, 108, 0.422);
 }
 
 .hamburger-setting {

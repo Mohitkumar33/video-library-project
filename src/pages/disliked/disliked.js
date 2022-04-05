@@ -32,7 +32,7 @@ const Disliked = () => {
           <div className="content-column">
             <h2 className="must-watch">Disliked Videos</h2>
             <div className="all-cards-home">
-              {dislikes &&
+              {dislikes.length ? (
                 dislikes.map((video) => (
                   <div className="video-card" key={video._id}>
                     <div className="card-image">
@@ -66,7 +66,10 @@ const Disliked = () => {
                       Remove from Disliked
                     </button>
                   </div>
-                ))}
+                ))
+              ) : (
+                <h2>No disliked videos to show</h2>
+              )}
             </div>
           </div>
         </div>

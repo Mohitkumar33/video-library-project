@@ -201,3 +201,36 @@ button:hover {
     display: none;
   }
 } */
+@media (max-width: 660px) {
+  .latest-video-info {
+    /* position: absolute; */
+    color: white;
+    padding: 0.7rem;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    font-size: small;
+    /* top: 15%;
+      left: 6%; */
+  }
+}
+@media (max-width: 476px) {
+  .chips {
+    top: 6.5rem;
+  }
+}
+@media (max-width: 357px) {
+  .latest-video-info {
+    font-size: smaller;
+    padding: 0.5rem;
+    margin-left: 0.4rem;
+    margin-top: 0.3rem;
+  }
+  .latest-video-info button {
+    background-color: var(--primary-red);
+    color: white;
+    border: transparent;
+    padding: 8px;
+    border-radius: 1px;
+    margin-top: 8px;
+  }
+}

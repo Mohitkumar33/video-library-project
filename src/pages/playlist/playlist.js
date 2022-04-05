@@ -32,13 +32,13 @@ const Playlist = () => {
               <h1>My playlist</h1>
             </div>
             <div className="all-playlist">
-              {playlists &&
+              {playlists.length ? (
                 playlists.map((item) => (
                   <div className="playlist-card" key={item._id}>
                     <Link to={`${item._id}`}>
                       <div className="playlist-info">
                         <h3>{item.title}</h3>
-                        <p>{item.description}</p>
+                        <p>{`Total videos: ${item.videos.length}`}</p>
                       </div>
                     </Link>
                     <div>
@@ -61,7 +61,10 @@ const Playlist = () => {
                       </svg>
                     </div>
                   </div>
-                ))}
+                ))
+              ) : (
+                <h2>There is no playlist</h2>
+              )}
             </div>
           </div>
         </div>
