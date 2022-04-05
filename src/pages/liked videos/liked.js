@@ -32,35 +32,39 @@ const Liked = () => {
           <div className="content-column">
             <h2 className="must-watch">Liked Videos</h2>
             <div className="all-cards-home">
-              {likes.map((video) => (
-                <div className="video-card" key={video._id}>
-                  <div className="card-image">
-                    <Link to={`/video/${video._id}`}>
-                      <img
-                        className="card-image"
-                        src={video.video_img}
-                        onClick={
-                          isAuth
-                            ? () => addToHistory(video, dispatch)
-                            : undefined
-                        }
-                        alt={video.title}
-                      />
-                    </Link>
+              {likes.length ? (
+                likes.map((video) => (
+                  <div className="video-card" key={video._id}>
+                    <div className="card-image">
+                      <Link to={`/video/${video._id}`}>
+                        <img
+                          className="card-image"
+                          src={video.video_img}
+                          onClick={
+                            isAuth
+                              ? () => addToHistory(video, dispatch)
+                              : undefined
+                          }
+                          alt={video.title}
+                        />
+                      </Link>
+                    </div>
+                    <div className="card-title text">{video.title}</div>
+                    <div className="card-views">
+                      <p>6k views</p>
+                      <p className="hours-pading">| 4 hours ago</p>
+                    </div>
+                    <button
+                      className="card-watch-button"
+                      onClick={() => removeFromLikes(video._id, dispatch)}
+                    >
+                      Remove from Liked
+                    </button>
                   </div>
-                  <div className="card-title text">{video.title}</div>
-                  <div className="card-views">
-                    <p>6k views</p>
-                    <p className="hours-pading">| 4 hours ago</p>
-                  </div>
-                  <button
-                    className="card-watch-button"
-                    onClick={() => removeFromLikes(video._id, dispatch)}
-                  >
-                    Remove from Liked
-                  </button>
-                </div>
-              ))}
+                ))
+              ) : (
+                <h2>No liked videos to show</h2>
+              )}
             </div>
           </div>
         </div>

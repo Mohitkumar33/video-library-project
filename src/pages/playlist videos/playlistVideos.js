@@ -55,9 +55,16 @@ const PlaylistVideos = () => {
                 src="https://res.cloudinary.com/dbfzfqfhl/image/upload/v1648755213/ecom%20item%20images/video%20library%20data/loading_vja82z.gif"
               />
             )}
-            {allVideos && <h2 className="must-watch">{allVideos.title}</h2>}
+            {allVideos ? (
+              <>
+                <h2 className="must-watch">
+                  {allVideos.title} ({allVideos.description})
+                </h2>
+                <p></p>
+              </>
+            ) : undefined}
             <div className="all-cards-home">
-              {allVideos &&
+              {allVideos ? (
                 allVideos.videos.map((video) => (
                   <div className="video-card" key={video._id}>
                     <div className="card-image">
@@ -93,7 +100,10 @@ const PlaylistVideos = () => {
                       Remove from playlist
                     </button>
                   </div>
-                ))}
+                ))
+              ) : (
+                <h2 style={{ color: "red" }}>No videos in this playlist</h2>
+              )}
             </div>
           </div>
         </div>

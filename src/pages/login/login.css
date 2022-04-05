@@ -73,3 +73,10 @@ a {
   padding-top: 15px;
   padding-bottom: 6px;
 }
+
+#test-login {
+  /* background-color: rgb(252, 62, 62); */
+  background-color: white;
+  color: rgb(252, 62, 62);
+  font-weight: bold;
+}

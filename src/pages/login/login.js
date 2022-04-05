@@ -60,7 +60,10 @@ const Login = () => {
             </p>
           </div>
           <button onClick={() => callUserLogin(email, password)}>Login</button>
-          <button onClick={() => callUserLogin("mk@gmail.com", "mohit")}>
+          <button
+            onClick={() => callUserLogin("mk@gmail.com", "mohit")}
+            id="test-login"
+          >
             Test Login
           </button>
           <div className="icon-new-account">
