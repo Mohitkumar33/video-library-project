@@ -15,6 +15,7 @@ const PlaylistModal = ({ setModal, video }) => {
   });
   const { playlistState, playlistDispatch } = usePlaylist();
   const { playlists } = playlistState;
+
   return (
     <>
       <div className="set-background-color">
