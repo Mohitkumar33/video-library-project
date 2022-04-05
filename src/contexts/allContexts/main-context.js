@@ -34,6 +34,7 @@ const ContextProvider = ({ children }) => {
       dispatch({ type: "SET_CATEGORIES", payload: data });
     })();
   }, []);
+
   useEffect(() => {
     if (!isAuth) return;
     (async () => {
@@ -41,6 +42,7 @@ const ContextProvider = ({ children }) => {
       dispatch({ type: "SET_LIKES", payload: data });
     })();
   }, [isAuth]);
+
   useEffect(() => {
     if (!isAuth) return;
     (async () => {
@@ -48,6 +50,7 @@ const ContextProvider = ({ children }) => {
       dispatch({ type: "SET_WATCHLATER", payload: data });
     })();
   }, [isAuth]);
+
   useEffect(() => {
     if (!isAuth) return;
     (async () => {

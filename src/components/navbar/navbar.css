@@ -82,3 +82,12 @@ nav {
 .brand a {
   text-decoration: none;
 }
+
+@media (max-width: 1030px) {
+  .search-icon {
+    display: none;
+  }
+  input {
+    display: none;
+  }
+}

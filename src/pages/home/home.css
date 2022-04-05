@@ -176,3 +176,21 @@ a {
 button:hover {
   cursor: pointer;
 }
+
+.aside-small {
+  display: none;
+}
+
+@media (max-width: 930px) {
+  .aside-big {
+    display: none;
+  }
+  .aside-small {
+    display: block;
+  }
+}
+/* @media (min-width: 930px) {
+  .aside-small {
+    display: none;
+  }
+} */

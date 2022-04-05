@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2rem;
+  margin: 1rem;
+  width: 100%;
 }
 
 .history-heading button {

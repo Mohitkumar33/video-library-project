@@ -5,7 +5,7 @@
 
 .left-column {
   width: 67%;
-  min-width: 48rem;
+  max-width: 48rem;
   display: flex;
   flex-direction: column;
   margin-left: 1rem;
@@ -138,4 +138,21 @@
 
 .playlist-icon:hover {
   cursor: pointer;
+}
+
+@media (max-width: 1030px) {
+  .right-column {
+    display: none;
+  }
+  .left-column {
+    width: 100%;
+  }
+  /* input {
+    display: none;
+  } */
+}
+@media (max-width: 590px) {
+  .all-video-actions {
+    display: none;
+  }
 }
