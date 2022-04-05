@@ -8,7 +8,7 @@ import { removeFromLikes } from "../../utilities/likesUtils";
 import "./liked.css";
 
 const Liked = () => {
-  const { state, dispatch } = mainContext();
+  const { state, dispatch, hamburger } = mainContext();
   const { likes } = state;
   const { authState } = useAuth();
   const { isAuth } = authState;
@@ -16,13 +16,19 @@ const Liked = () => {
     <>
       <main className="main-content">
         <div className="home-page">
-          <div className="aside-big">
+          {hamburger ? (
             <Aside />
-          </div>
+          ) : (
+            <>
+              <div className="aside-big">
+                <Aside />
+              </div>
 
-          <div className="aside-small">
-            <Aside2 />
-          </div>
+              <div className="aside-small">
+                <Aside2 />
+              </div>
+            </>
+          )}
           <div className="content-column">
             <h2 className="must-watch">Liked Videos</h2>
             <div className="all-cards-home">

@@ -12,16 +12,18 @@ import {
 import { addToHistory } from "../../utilities/historyUtils";
 import { PlaylistModal } from "../playlist modal/playlistModal";
 import { Aside2 } from "../../components/aside type 2/aside2";
+import { Aside } from "../../components/aside/aside";
 
 const CurrentPlay = () => {
   const [modal, setModal] = useState(false);
   const { videoId } = useParams();
   const [currentVideo, setCurrentVideo] = useState(null);
   const [loader, setLoader] = useState(false);
-  const { state, dispatch } = mainContext();
+  const { state, dispatch, hamburger } = mainContext();
   const { authState } = useAuth();
   const { isAuth } = authState;
   const { allVideos, likes, dislikes, watchlater } = state;
+
   let recommendVideos;
   if (currentVideo) {
     recommendVideos = allVideos.filter(
@@ -54,7 +56,13 @@ const CurrentPlay = () => {
       {currentVideo && (
         <main className="main-content">
           <div className="home-page">
-            <Aside2 />
+            {hamburger ? (
+              <Aside />
+            ) : (
+              <>
+                <Aside2 />
+              </>
+            )}
             <div className="content-column">
               <div className="playing-page">
                 <div className="left-column">

@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { useEffect } from "react";
 import { setCategories } from "../../utilities/categoriesUtils";
 import { setHistory } from "../../utilities/historyUtils";
@@ -10,6 +10,7 @@ import { reducerFunction } from "./reducerFunction";
 const context = createContext(null);
 
 const ContextProvider = ({ children }) => {
+  const [hamburger, setHamburger] = useState(false);
   const [state, dispatch] = useReducer(reducerFunction, {
     allVideos: [],
     allCategories: [],
@@ -60,7 +61,9 @@ const ContextProvider = ({ children }) => {
   }, [isAuth]);
 
   return (
-    <context.Provider value={{ state, dispatch }}>{children}</context.Provider>
+    <context.Provider value={{ state, dispatch, hamburger, setHamburger }}>
+      {children}
+    </context.Provider>
   );
 };
 
