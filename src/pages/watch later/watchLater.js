@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Aside2 } from "../../components/aside type 2/aside2";
 import { Aside } from "../../components/aside/aside";
 import { mainContext } from "../../contexts/allContexts/main-context";
 import { useAuth } from "../../contexts/auth-context";
@@ -16,7 +17,13 @@ const WatchLater = () => {
     <>
       <main className="main-content">
         <div className="home-page">
-          <Aside />
+          <div className="aside-big">
+            <Aside />
+          </div>
+
+          <div className="aside-small">
+            <Aside2 />
+          </div>
           <div className="content-column">
             <h2 className="must-watch">WatchLater Videos</h2>
             <div className="all-cards-home">

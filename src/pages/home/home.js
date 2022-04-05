@@ -12,6 +12,7 @@ import {
   removeFromWatchlater,
 } from "../../utilities/watchlaterUtils";
 import { Aside } from "../../components/aside/aside";
+import { Aside2 } from "../../components/aside type 2/aside2";
 
 const Home = () => {
   const { authState } = useAuth();
@@ -42,7 +43,13 @@ const Home = () => {
     <>
       <main className="main-content">
         <div className="home-page">
-          <Aside />
+          <div className="aside-big">
+            <Aside />
+          </div>
+
+          <div className="aside-small">
+            <Aside2 />
+          </div>
 
           {/* ************************************************************************ */}
           <div className="content-column">

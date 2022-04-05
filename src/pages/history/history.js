@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Aside2 } from "../../components/aside type 2/aside2";
 import { Aside } from "../../components/aside/aside";
 import { mainContext } from "../../contexts/allContexts/main-context";
 import {
@@ -14,7 +15,13 @@ const History = () => {
     <>
       <main className="main-content">
         <div className="home-page">
-          <Aside />
+          <div className="aside-big">
+            <Aside />
+          </div>
+
+          <div className="aside-small">
+            <Aside2 />
+          </div>
           <div className="content-column">
             <div className="history-heading">
               <h1>History</h1>

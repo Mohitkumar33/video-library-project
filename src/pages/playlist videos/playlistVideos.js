@@ -8,6 +8,7 @@ import "./playlistVideos.css";
 import { usePlaylist } from "../../contexts/playlistContext/playlist-context";
 import { useAuth } from "../../contexts/auth-context";
 import { Aside } from "../../components/aside/aside";
+import { Aside2 } from "../../components/aside type 2/aside2";
 
 const PlaylistVideos = () => {
   const { playlistDispatch } = usePlaylist();
@@ -32,7 +33,13 @@ const PlaylistVideos = () => {
     <>
       <main className="main-content">
         <div className="home-page">
-          <Aside />
+          <div className="aside-big">
+            <Aside />
+          </div>
+
+          <div className="aside-small">
+            <Aside2 />
+          </div>
           <div className="content-column">
             {loader && (
               <img
