@@ -13,8 +13,8 @@ import {
 } from "../../utilities/watchlaterUtils";
 import { Aside } from "../../components/aside/aside";
 import { Aside2 } from "../../components/aside type 2/aside2";
-
 const Home = () => {
+  const navigate = useNavigate();
   const { authState } = useAuth();
   const { isAuth } = authState;
   const { filterState } = useSearchFilter();
@@ -132,7 +132,7 @@ const Home = () => {
                     ) : (
                       <button
                         className="card-watch-button"
-                        onClick={() => alert("Please login")}
+                        onClick={() => navigate("/login")}
                       >
                         Watch Later
                       </button>

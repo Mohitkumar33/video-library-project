@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./currentPlay.css";
 import { mainContext } from "../../contexts/allContexts/main-context";
@@ -15,6 +15,7 @@ import { Aside2 } from "../../components/aside type 2/aside2";
 import { Aside } from "../../components/aside/aside";
 
 const CurrentPlay = () => {
+  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const { videoId } = useParams();
   const [currentVideo, setCurrentVideo] = useState(null);
@@ -269,7 +270,7 @@ const CurrentPlay = () => {
                         ) : (
                           <button
                             className="card-watch-button"
-                            onClick={() => alert("Please login")}
+                            onClick={() => navigate("/login")}
                           >
                             Watch Later
                           </button>
