@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { mainContext } from "../../contexts/allContexts/main-context";
 import { useSearchFilter } from "../../contexts/search-filter-context";
@@ -14,6 +14,7 @@ import { Aside } from "../../components/aside/aside";
 import { Aside2 } from "../../components/aside type 2/aside2";
 
 const Explore = () => {
+  const navigate = useNavigate();
   const { state, dispatch, hamburger } = mainContext();
   const { authState } = useAuth();
   const { isAuth } = authState;
@@ -86,7 +87,7 @@ const Explore = () => {
                   ) : (
                     <button
                       className="card-watch-button"
-                      onClick={() => alert("Please login")}
+                      onClick={() => navigate("/login")}
                     >
                       Watch Later
                     </button>
